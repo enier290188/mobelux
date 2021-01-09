@@ -53,9 +53,9 @@ class ImageViewSet(ModelViewSet):
         name = self.request.query_params.get('name')
         if name:
             try:
-                album = AlbumModel.objects.get(name=name)
-                if album:
-                    return ImageModel.objects.filter(album__id=album.id).order_by('title')
+                albums = AlbumModel.objects.filter(name=name)
+                if albums:
+                    return ImageModel.objects.filter(album__id=albums[0].id).order_by('title')
             except AlbumModel.DoesNotExist:
                 return ImageModel.objects.none()
         return ImageModel.objects.all().order_by('title')
