@@ -1,0 +1,41 @@
+{% extends "mobelux/dashboard/album.html" %}
+
+{% block body-main-content-center-title %}{% include "mobelux/_svg_/collection-fill.html" %}&nbsp;Albums{% endblock %}
+
+{% block body-main-content-center-content %}
+    <div class="m-0 p-0 pb-1 d-flex flex-row justify-content-end align-items-center">
+        <a href="{% url "dashboard.dj:album-create" %}" class="btn btn-primary mx-1 my-0 px-3 py-2 d-flex flex-row justify-content-start align-items-center" title="Create Album">{% include "mobelux/_svg_/plus-circle.html" %} <span class="h6 m-0 ml-1 p-0">Create Album</span></a>
+    </div>
+    {% if object_list %}
+        <div class="table-responsive">
+            <table class="table table-borderless table-hover align-middle">
+                <thead class="table-success">
+                <tr>
+                    <th scope="col">&nbsp;</th>
+                    <th class="text-nowrap" scope="col">Name</th>
+                    <th class="text-nowrap" scope="col">Is Public</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for object in object_list %}
+                    <tr>
+                        <th class="d-flex flex-row justify-content-start align-items-center" scope="row">
+                            <a href="{% url "dashboard.dj:album-detail" pk=object.pk %}" class="btn btn-outline-info mx-1 my-0 p-2 d-flex flex-row justify-content-start align-items-center" title="Detail">{% include "mobelux/_svg_/check.html" %}</a>
+                            <a href="{% url "dashboard.dj:album-update" pk=object.pk %}" class="btn btn-outline-primary mx-1 my-0 p-2 d-flex flex-row justify-content-start align-items-center" title="Update">{% include "mobelux/_svg_/pencil.html" %}</a>
+                            <a href="{% url "dashboard.dj:album-delete" pk=object.pk %}" class="btn btn-outline-danger mx-1 my-0 p-2 d-flex flex-row justify-content-start align-items-center" title="Delete">{% include "mobelux/_svg_/trash.html" %}</a>
+                        </th>
+                        <td>
+                            {{ object.name }}
+                        </td>
+                        <td>
+                            {{ object.is_public }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>No albums yet.</p>
+    {% endif %}
+{% endblock %}

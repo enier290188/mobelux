@@ -1,0 +1,7 @@
+{% spaceless %}
+    {% if t_tmp_field_message %}
+        <div class="m-0 mb-2 alert alert-{% if DEFAULT_MESSAGE_LEVELS.SUCCESS == t_tmp_field_message_level %}success{% elif DEFAULT_MESSAGE_LEVELS.INFO == t_tmp_field_message_level %}info{% elif DEFAULT_MESSAGE_LEVELS.WARNING == t_tmp_field_message_level %}warning{% elif DEFAULT_MESSAGE_LEVELS.ERROR == t_tmp_field_message_level %}danger{% else %}dark{% endif %} alert-dismissible fade show" role="alert">
+            <p class="m-0 p-0 text-left">{{ t_tmp_field_message|escape }}</p>
+        </div>
+    {% endif %}
+{% endspaceless %}

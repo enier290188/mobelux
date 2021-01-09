@@ -1,0 +1,34 @@
+{% extends "mobelux/dashboard/album.html" %}
+
+{% block body-main-content-center-title %}{% include "mobelux/_svg_/collection-fill.html" %}&nbsp;Album Detail{% endblock %}
+
+{% block body-main-content-center-content-form-field %}
+    <div class="table-responsive">
+        <table class="table table-borderless align-middle">
+            <thead class="table-success">
+            <tr>
+                <th scope="col">Field</th>
+                <th scope="col">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th class="text-nowrap">Name</th>
+                <td class="text-nowrap">{{ object.name }}</td>
+            </tr>
+            <tr>
+                <th class="text-nowrap">Is Public</th>
+                <td class="text-nowrap">{{ object.is_public }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+
+{% block body-main-content-center-content-form-button-submit-outside %}{% endblock %}
+
+{% block body-main-content-center-content-form-button-others %}
+    <a class="ml-1 btn btn-outline-primary" href="{% url "dashboard.dj:album-update" pk=object.pk %}">{% include "mobelux/_svg_/pencil.html" %}<span class="d-none d-md-inline-block">&nbsp;Update</span></a>
+    <a class="ml-1 btn btn-outline-danger" href="{% url "dashboard.dj:album-delete" pk=object.pk %}">{% include "mobelux/_svg_/trash.html" %}<span class="d-none d-md-inline-block">&nbsp;Delete</span></a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "mobelux/security/profile/profile.html" %}
+
+{% block body-main-content-center-title %}{% include "mobelux/_svg_/box-arrow-right.html" %}&nbsp;Logout{% endblock %}
+
+{% block body-main-content-center-content-form-field %}
+    {% with t_tmp_field_message="Would you like logout?" t_tmp_field_message_level=DEFAULT_MESSAGE_LEVELS.INFO %}
+        {% include "mobelux/_field_/alert/message.html" %}
+    {% endwith %}
+{% endblock %}
+
+{% block body-main-content-center-content-form-button-submit-inside %}{% include "mobelux/_svg_/box-arrow-right.html" %}&nbsp;Logout{% endblock %}

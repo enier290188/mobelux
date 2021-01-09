@@ -1,0 +1,60 @@
+{% extends "mobelux/_layout_/page.html" %}
+{% load static %}
+
+{% block body-main-content-left-content %}
+    <div class="m-0 mb-3 p-0 card border-0 rounded-0 bg-transparent text-center">
+        <div class="m-0 mb-3 p-0 card-img-top border-0 bg-transparent">
+            <img src="{% if request.user.profile.avatar %}{{ request.user.profile.avatar.url }}{% else %}{% static "mobelux/img/avatar.png" %}{% endif %}" width="160px" height="160px" class="img-thumbnail border border-muted rounded bg-white" alt="...">
+        </div>
+        {% if request.user.is_authenticated %}
+            <div class="m-0 mb-3 p-0 card-body">
+                <h5 class="card-title h5">{{ request.user }}</h5>
+            </div>
+            <div class="m-0 p-0 list-group">
+                {% with t_tmp_path_current=request.path %}
+                    {% url "security.dj:profile:info" as t_tmp_path_current %}
+                    <a href="{{ t_tmp_path_current }}" class="list-group-item list-group-item-action list-group-item-light{% if t_tmp_path_current in request.path %} active{% endif %}">{% include "mobelux/_svg_/person-lines-fill.html" %}&nbsp;Info</a>
+                    {% url "security.dj:profile:password" as t_tmp_path_current %}
+                    <a href="{{ t_tmp_path_current }}" class="list-group-item list-group-item-action list-group-item-light{% if t_tmp_path_current in request.path %} active{% endif %}">{% include "mobelux/_svg_/lock-fill.html" %}&nbsp;Password</a>
+                    {% url "security.dj:profile:avatar" as t_tmp_path_current %}
+                    <a href="{{ t_tmp_path_current }}" class="list-group-item list-group-item-action list-group-item-light{% if t_tmp_path_current in request.path %} active{% endif %}">{% include "mobelux/_svg_/person-bounding-box.html" %}&nbsp;Avatar</a>
+                    {% url "security.dj:profile:logout" as t_tmp_path_current %}
+                    <a href="{{ t_tmp_path_current }}" class="list-group-item list-group-item-action list-group-item-light{% if t_tmp_path_current in request.path %} active{% endif %}">{% include "mobelux/_svg_/box-arrow-right.html" %}&nbsp;Logout</a>
+                {% endwith %}
+            </div>
+        {% else %}
+            <div class="m-0 p-0 list-group">
+                {% with t_tmp_path_current=request.path %}
+                    {% url "security.dj:authenticate:register" as t_tmp_path_current %}
+                    <a href="{{ t_tmp_path_current }}" class="list-group-item list-group-item-action list-group-item-light{% if t_tmp_path_current in request.path %} active{% endif %}">{% include "mobelux/_svg_/person-plus-fill.html" %}&nbsp;Register</a>
+                    {% url "security.dj:authenticate:login" as t_tmp_path_current %}
+                    <a href="{{ t_tmp_path_current }}" class="list-group-item list-group-item-action list-group-item-light{% if t_tmp_path_current in request.path %} active{% endif %}">{% include "mobelux/_svg_/box-arrow-in-right.html" %}&nbsp;Login</a>
+                {% endwith %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block body-main-content-center-content %}
+    <div class="row">
+        <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
+            <form class="m-0 mb-2 mb-md-0 p-3 border border-muted bg-light" method="post" action="{{ request.path }}{% if request.GET.urlencode %}?{{ request.GET.urlencode }}{% endif %}"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+                {% csrf_token %}
+                {% with t_tmp_field_errors=form.non_field_errors %}
+                    {% include "mobelux/_field_/alert/error.html" %}
+                {% endwith %}
+                {% block body-main-content-center-content-form-field %}{% endblock %}
+                <div class="mt-4 mr-0 mb-0 ml-0 pt-2 pr-0 pb-0 pl-0 border-top border-muted">
+                    {% block body-main-content-center-content-form-button %}
+                        {% block body-main-content-center-content-form-button-submit-outside %}
+                            <button type="submit" class="btn btn-primary">{% block body-main-content-center-content-form-button-submit-inside %}{% endblock %}</button>
+                        {% endblock %}
+                        {% block body-main-content-center-content-form-button-reset-outside %}
+                            <a class="ml-1 btn btn-outline-success" href="{{ request.path }}">{% block body-main-content-center-content-form-button-reset-inside %}{% include "mobelux/_svg_/arrow-repeat.html" %}&nbsp;Reset{% endblock %}</a>
+                        {% endblock %}
+                    {% endblock %}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

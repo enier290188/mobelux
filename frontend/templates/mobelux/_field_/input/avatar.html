@@ -1,0 +1,35 @@
+{% load static %}
+
+<div class="m-0 mb-3 p-0 pb-3 form-row justify-content-center border-bottom border-muted">
+    {% if t_tmp_instance_field and not t_tmp_field.errors %}
+        <div class="col-6 offset-3">
+            <img src="{{ t_tmp_instance_field.url }}" class="img-thumbnail border border-muted rounded bg-white" alt="...">
+        </div>
+        <div class="col-3 align-self-end">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" name="{{ t_tmp_field.name }}-clear" id="{{ t_tmp_field.auto_id }}-clear_id" class="custom-control-input">
+                <label for="{{ t_tmp_field.auto_id }}-clear_id" class="custom-control-label">clear</label>
+            </div>
+        </div>
+    {% else %}
+        <div class="col-6">
+            <img src="{% static "mobelux/img/avatar.png" %}" class="img-thumbnail border border-muted rounded bg-white" alt="...">
+        </div>
+    {% endif %}
+</div>
+<div class="form-group">
+    <label for="{{ t_tmp_field.id_for_label }}" class="font-weight-bold">{{ t_tmp_field.field.label|lower }}:{% if t_tmp_field.field.required %} *{% endif %}</label>
+    <input type="file" name="{{ t_tmp_field.name }}" id="{{ t_tmp_field.auto_id }}" class="form-control-file{% if t_tmp_field.errors or t_tmp_is_invalid %} is-invalid{% elif t_tmp_is_valid %} is-valid{% endif %}"{% if t_tmp_field.field.help_text %} aria-describedby="{{ t_tmp_field.auto_id }}-help"{% endif %}{% if t_tmp_field.field.required %} required="required"{% endif %}{% for t_tmp_field_key, t_tmp_field_value in t_tmp_field.field.widget.attrs.items %} {{ t_tmp_field_key }}="{{ t_tmp_field_value }}"{% endfor %}>
+    {% if t_tmp_field.field.help_text %}
+        <small id="{{ t_tmp_field.auto_id }}-help" class="form-text text-muted">{{ t_tmp_field.field.help_text }}</small>
+    {% endif %}
+    {% if t_tmp_field.errors %}
+        <div class="mx-0 my-1 p-1 invalid-feedback rounded bg-danger text-white">
+            <ul class="m-0 ml-4 p-0">
+                {% for t_tmp_field_error in t_tmp_field.errors %}
+                    <li class="m-0 p-0">{{ t_tmp_field_error|escape }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</div>

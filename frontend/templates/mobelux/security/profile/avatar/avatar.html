@@ -1,0 +1,11 @@
+{% extends "mobelux/security/profile/profile.html" %}
+
+{% block body-main-content-center-title %}{% include "mobelux/_svg_/person-bounding-box.html" %}&nbsp;Avatar{% endblock %}
+
+{% block body-main-content-center-content-form-field %}
+    {% with t_tmp_field=form.avatar t_tmp_instance_field=form.instance.avatar %}
+        {% include "mobelux/_field_/input/avatar.html" %}
+    {% endwith %}
+{% endblock %}
+
+{% block body-main-content-center-content-form-button-submit-inside %}{% include "mobelux/_svg_/pencil.html" %}&nbsp;Update{% endblock %}

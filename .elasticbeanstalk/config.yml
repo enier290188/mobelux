@@ -1,0 +1,21 @@
+branch-defaults:
+  dev:
+    environment: mobelux-env-dev
+    group_suffix: null
+  master:
+    environment: mobelux-env
+    group_suffix: null
+global:
+  application_name: mobelux-app
+  branch: null
+  default_ec2_keyname: js-ahead-keypair
+  default_platform: Python 3.7
+  default_region: us-east-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli
+  repository: null
+  sc: git
+  workspace_type: Application

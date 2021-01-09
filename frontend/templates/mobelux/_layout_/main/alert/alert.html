@@ -1,0 +1,16 @@
+{% spaceless %}
+    {% if messages %}
+        {% with t_tmp_messages=messages %}
+            <div id="body-main-alert" class="row">
+                <div class="col">
+                    {% for t_tmp_message in t_tmp_messages %}
+                        <div class="m-0 mx-n3 {% if forloop.last %}mb-md-2{% else %}mb-md-1{% endif %} alert alert-{% if DEFAULT_MESSAGE_LEVELS.SUCCESS == t_tmp_message.level %}success{% elif DEFAULT_MESSAGE_LEVELS.INFO == t_tmp_message.level %}info{% elif DEFAULT_MESSAGE_LEVELS.WARNING == t_tmp_message.level %}warning{% elif DEFAULT_MESSAGE_LEVELS.ERROR == t_tmp_message.level %}danger{% else %}dark{% endif %} alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <p class="m-0 p-0 text-left">{{ t_tmp_message|escape }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endwith %}
+    {% endif %}
+{% endspaceless %}

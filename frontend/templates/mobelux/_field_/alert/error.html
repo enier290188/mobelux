@@ -1,0 +1,10 @@
+{% spaceless %}
+    {% if t_tmp_field_errors %}
+        {% for t_tmp_field_error in t_tmp_field_errors %}
+            <div class="m-0 {% if forloop.last %}mb-2{% else %}mb-1{% endif %} alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p class="m-0 p-0 text-left">{{ t_tmp_field_error|escape }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endspaceless %}

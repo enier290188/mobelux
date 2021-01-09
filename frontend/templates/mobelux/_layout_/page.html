@@ -1,0 +1,65 @@
+{% spaceless %}
+    {% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <!-- Required meta tags -->
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+            <!-- Title -->
+            <title>{% block head-title %}{% endblock %}</title>
+            <!-- Favicon -->
+            <link rel="icon" href="{% static "mobelux/img/favicon.ico" %}">
+        </head>
+        <body class="bg-white">
+            {% block body-header %}
+                {% include "mobelux/_layout_/header/header.html" %}
+            {% endblock %}
+            <main id="body-main" class="mt-5 mr-0 mb-0 ml-0 p-0 pt-md-5 pr-md-0 pb-md-2 pl-md-0 bg-white">
+                <div class="container">
+                    {% block body-main-alert %}
+                        {% include "mobelux/_layout_/main/alert/alert.html" %}
+                    {% endblock %}
+                    {% block body-main-content %}
+                        <div id="body-main-content" class="row">
+                            <div class="col">
+                                <div class="row">
+                                    {% block body-main-content-left-outside %}
+                                        <div id="body-main-content-left" class="col-12 col-md-auto border border-muted bg-light">
+                                            {% block body-main-content-left %}
+                                                {% block body-main-content-left-title-outside %}
+                                                    <h3 id="body-main-content-left-title" class="m-0 mb-3 pt-0 pr-1 pb-1 pl-1 h3 border-bottom border-muted">{% block body-main-content-left-title %}&nbsp;{% endblock %}</h3>
+                                                {% endblock %}
+                                                {% block body-main-content-left-content %}{% endblock %}
+                                            {% endblock %}
+                                        </div>
+                                    {% endblock %}
+                                    {% block body-main-content-center-outside %}
+                                        <div id="body-main-content-center" class="col-12 col-md border border-white bg-white">
+                                            {% block body-main-content-center %}
+                                                {% block body-main-content-center-title-outside %}
+                                                    <h3 id="body-main-content-center-title" class="m-0 mb-3 pt-0 pr-1 pb-1 pl-1 h3 border-bottom border-muted">{% block body-main-content-center-title %}&nbsp;{% endblock %}</h3>
+                                                {% endblock %}
+                                                {% block body-main-content-center-content %}{% endblock %}
+                                            {% endblock %}
+                                        </div>
+                                    {% endblock %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endblock %}
+                </div>
+            </main>
+            {% block body-footer %}
+                {% include "mobelux/_layout_/footer/footer.html" %}
+            {% endblock %}
+            <!-- Optional JavaScript -->
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        </body>
+    </html>
+{% endspaceless %}

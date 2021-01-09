@@ -1,0 +1,23 @@
+{% extends "mobelux/dashboard/image.html" %}
+
+{% block body-main-content-center-title %}{% include "mobelux/_svg_/collection-fill.html" %}&nbsp;Image Update{% endblock %}
+
+{% block body-main-content-center-content-form-field %}
+    {% with t_tmp_field=form.title %}
+        {% include "mobelux/_field_/input/text-password-email.html" %}
+    {% endwith %}
+    {% with t_tmp_field=form.image t_tmp_instance_field=form.instance.image %}
+        {% include "mobelux/_field_/input/image.html" %}
+    {% endwith %}
+    {% with t_tmp_field=form.album %}
+        {% include "mobelux/_field_/select/select.html" %}
+    {% endwith %}
+{% endblock %}
+
+
+{% block body-main-content-center-content-form-button-submit-inside %}{% include "mobelux/_svg_/pencil.html" %}&nbsp;Update{% endblock %}
+
+{% block body-main-content-center-content-form-button-others %}
+    <a class="ml-1 btn btn-outline-info" href="{% url "dashboard.dj:image-detail" pk=object.pk %}">{% include "mobelux/_svg_/check.html" %}<span class="d-none d-md-inline-block">&nbsp;Detail</span></a>
+    <a class="ml-1 btn btn-outline-danger" href="{% url "dashboard.dj:image-delete" pk=object.pk %}">{% include "mobelux/_svg_/trash.html" %}<span class="d-none d-md-inline-block">&nbsp;Delete</span></a>
+{% endblock %}

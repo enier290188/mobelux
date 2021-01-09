@@ -1,0 +1,15 @@
+{% extends "mobelux/dashboard/image.html" %}
+
+{% block body-main-content-center-title %}{% include "mobelux/_svg_/collection-fill.html" %}&nbsp;Image Create{% endblock %}
+
+{% block body-main-content-center-content-form-field %}
+    {% with t_tmp_field=form.title %}
+        {% include "mobelux/_field_/input/text-password-email.html" %}
+    {% endwith %}
+    {% with t_tmp_field=form.album %}
+        {% include "mobelux/_field_/select/select.html" %}
+    {% endwith %}
+{% endblock %}
+
+
+{% block body-main-content-center-content-form-button-submit-inside %}{% include "mobelux/_svg_/plus-circle.html" %}&nbsp;Create{% endblock %}

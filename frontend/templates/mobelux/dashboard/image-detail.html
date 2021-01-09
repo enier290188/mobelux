@@ -1,0 +1,45 @@
+{% extends "mobelux/dashboard/image.html" %}
+{% load static %}
+
+{% block body-main-content-center-title %}{% include "mobelux/_svg_/collection-fill.html" %}&nbsp;Image Detail{% endblock %}
+
+{% block body-main-content-center-content-form-field %}
+    <div class="table-responsive">
+        <table class="table table-borderless align-middle">
+            <thead class="table-success">
+            <tr>
+                <th scope="col">Field</th>
+                <th scope="col">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th class="text-nowrap">Title</th>
+                <td class="text-nowrap">{{ object.title }}</td>
+            </tr>
+            <tr>
+                <th class="text-nowrap">Image</th>
+                <td class="text-nowrap">
+                    {% if object.image %}
+                        <img src="{{ object.image.url }}" class="img-thumbnail border border-muted rounded bg-white" alt="...">
+                    {% else %}
+                        <img src="{% static "mobelux/img/empty.png" %}" class="img-thumbnail border border-muted rounded bg-white" alt="...">
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th class="text-nowrap">Album</th>
+                <td class="text-nowrap">{{ object.album.name }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+
+{% block body-main-content-center-content-form-button-submit-outside %}{% endblock %}
+
+{% block body-main-content-center-content-form-button-others %}
+    <a class="ml-1 btn btn-outline-primary" href="{% url "dashboard.dj:image-update" pk=object.pk %}">{% include "mobelux/_svg_/pencil.html" %}<span class="d-none d-md-inline-block">&nbsp;Update</span></a>
+    <a class="ml-1 btn btn-outline-danger" href="{% url "dashboard.dj:image-delete" pk=object.pk %}">{% include "mobelux/_svg_/trash.html" %}<span class="d-none d-md-inline-block">&nbsp;Delete</span></a>
+{% endblock %}

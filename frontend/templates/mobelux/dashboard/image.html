@@ -1,0 +1,27 @@
+{% extends "mobelux/dashboard/index.html" %}
+
+{% block body-main-content-center-content %}
+    <div class="row">
+        <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
+            <form class="m-0 mb-2 mb-md-0 p-3 border border-muted bg-light" method="post" action="{{ request.path }}{% if request.GET.urlencode %}?{{ request.GET.urlencode }}{% endif %}"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+                {% csrf_token %}
+                {% with t_tmp_field_errors=form.non_field_errors %}
+                    {% include "mobelux/_field_/alert/error.html" %}
+                {% endwith %}
+                {% block body-main-content-center-content-form-field %}{% endblock %}
+                <div class="mt-4 mr-0 mb-0 ml-0 pt-2 pr-0 pb-0 pl-0 border-top border-muted">
+                    {% block body-main-content-center-content-form-button %}
+                        {% block body-main-content-center-content-form-button-submit-outside %}
+                            <button type="submit" class="btn btn-primary">{% block body-main-content-center-content-form-button-submit-inside %}{% endblock %}</button>
+                        {% endblock %}
+                        {% block body-main-content-center-content-form-button-reset-outside %}
+                            <a class="ml-1 btn btn-outline-success" href="{{ request.path }}">{% block body-main-content-center-content-form-button-reset-inside %}{% include "mobelux/_svg_/arrow-repeat.html" %}<span class="d-none d-md-inline-block">&nbsp;Reset</span>{% endblock %}</a>
+                        {% endblock %}
+                        {% block body-main-content-center-content-form-button-others %}
+                        {% endblock %}
+                    {% endblock %}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

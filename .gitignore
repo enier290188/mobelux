@@ -1,0 +1,22 @@
+# IDEs.
+/.idea/
+
+# Migrations directories. Ignore everything in these directories, except these "__init__.py" files.
+/**/migrations/*
+!/**/migrations/__init__.py
+
+# DB SQLite.
+*.sqlite3
+
+# CDN locals.
+/cdn/
+
+# AWS Elastic Beanstalk Files.
+.elasticbeanstalk/*
+!.elasticbeanstalk/config.yml
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+# Others.
+__pycache__/
+**/__pycache__/

@@ -1,0 +1,19 @@
+{% extends "mobelux/dashboard/album.html" %}
+
+{% block body-main-content-center-title %}{% include "mobelux/_svg_/collection-fill.html" %}&nbsp;Album Delete{% endblock %}
+
+{% block body-main-content-center-content-form-field %}
+    <div class="alert alert-danger m-0 p-3" role="alert">
+        <h5 class="m-0 p-0 text-center">Would you like to delete it?</h5>
+    </div>
+{% endblock %}
+
+
+{% block body-main-content-center-content-form-button-submit-outside %}
+    <button type="submit" class="btn btn-danger">{% include "mobelux/_svg_/trash.html" %}&nbsp;Delete</button>
+{% endblock %}
+
+{% block body-main-content-center-content-form-button-others %}
+    <a class="ml-1 btn btn-outline-info" href="{% url "dashboard.dj:album-detail" pk=object.pk %}">{% include "mobelux/_svg_/check.html" %}<span class="d-none d-md-inline-block">&nbsp;Detail</span></a>
+    <a class="ml-1 btn btn-outline-primary" href="{% url "dashboard.dj:album-update" pk=object.pk %}">{% include "mobelux/_svg_/pencil.html" %}<span class="d-none d-md-inline-block">&nbsp;Update</span></a>
+{% endblock %}

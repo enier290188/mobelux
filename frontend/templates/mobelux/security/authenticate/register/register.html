@@ -1,0 +1,26 @@
+{% extends "mobelux/security/authenticate/authenticate.html" %}
+
+{% block body-main-content-center-title %}{% include "mobelux/_svg_/person-plus-fill.html" %}&nbsp;Register{% endblock %}
+
+{% block body-main-content-center-content-form-field %}
+    {% with t_tmp_field=form.first_name %}
+        {% include "mobelux/_field_/input/text-password-email.html" %}
+    {% endwith %}
+    {% with t_tmp_field=form.last_name %}
+        {% include "mobelux/_field_/input/text-password-email.html" %}
+    {% endwith %}
+    {% with t_tmp_field=form.username %}
+        {% include "mobelux/_field_/input/text-password-email.html" %}
+    {% endwith %}
+    {% with t_tmp_field=form.email %}
+        {% include "mobelux/_field_/input/text-password-email.html" %}
+    {% endwith %}
+    {% with t_tmp_field=form.password1 %}
+        {% include "mobelux/_field_/input/text-password-email.html" %}
+    {% endwith %}
+    {% with t_tmp_field=form.password2 %}
+        {% include "mobelux/_field_/input/text-password-email.html" %}
+    {% endwith %}
+{% endblock %}
+
+{% block body-main-content-center-content-form-button-submit-inside %}{% include "mobelux/_svg_/person-plus-fill.html" %}&nbsp;Register{% endblock %}

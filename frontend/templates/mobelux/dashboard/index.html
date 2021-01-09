@@ -1,0 +1,70 @@
+{% extends "mobelux/_layout_/page.html" %}
+{% load static %}
+
+{% block head-title %}Dashboard{% endblock %}
+
+{% block body-main-content-left-content %}
+    <div class="m-0 mb-3 p-0 list-group">
+        {% with t_tmp_path_current=request.path %}
+            {% url "dashboard.dj:album-list" as t_tmp_path_current %}
+            <a href="{{ t_tmp_path_current }}" class="list-group-item list-group-item-action list-group-item-light{% if t_tmp_path_current in request.path %} active{% endif %}">{% include "mobelux/_svg_/collection-fill.html" %}&nbsp;Albums</a>
+            {% url "dashboard.dj:image-list" as t_tmp_path_current %}
+            <a href="{{ t_tmp_path_current }}" class="list-group-item list-group-item-action list-group-item-light{% if t_tmp_path_current in request.path %} active{% endif %}">{% include "mobelux/_svg_/collection-fill.html" %}&nbsp;Images</a>
+        {% endwith %}
+    </div>
+{% endblock %}
+
+{% block body-main-content-center-title %}{% include "mobelux/_svg_/braces.html" %}&nbsp;Dashboard{% endblock %}
+
+{% block body-main-content-center-content %}
+    <ul class="list-group m-0 p-0">
+        {% for user in users %}
+            <li class="list-group-item">
+                <h3>{% include "mobelux/_svg_/person-fill.html" %} {{ user }}</h3>
+                <ul class="list-group m-0 p-0">
+                    {% for album in albums %}
+                        {% if album.user.id == user.id %}
+                            <li class="list-group-item">
+                                <h4>{% include "mobelux/_svg_/collection-fill.html" %} {{ album }}</h4>
+                                <ul>
+                                    {% for image in images %}
+                                        {% if image.album.id == album.id %}
+                                            <li>
+                                                <h5>
+                                                    {% if image.image %}
+                                                        <img src="{{ image.image.url }}" class="img-thumbnail border border-muted rounded bg-white" alt="..." width="32px" height="32px">
+                                                    {% else %}
+                                                        <img src="{% static "mobelux/img/empty.png" %}" class="img-thumbnail border border-muted rounded bg-white" alt="..." width="32px" height="32px">
+                                                    {% endif %}
+                                                    {{ image.title }}
+                                                </h5>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                <ul class="mt-2">
+                    {% for image in images %}
+                        {% if image.user.id == user.id %}
+                            {% if image.album == null %}
+                                <li>
+                                    <h5>
+                                        {% if image.image %}
+                                            <img src="{{ image.image.url }}" class="img-thumbnail border border-muted rounded bg-white" alt="..." width="32px" height="32px">
+                                        {% else %}
+                                            <img src="{% static "mobelux/img/empty.png" %}" class="img-thumbnail border border-muted rounded bg-white" alt="..." width="32px" height="32px">
+                                        {% endif %}
+                                        {{ image.title }}
+                                    </h5>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
